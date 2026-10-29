@@ -1,0 +1,15 @@
+Package: odin3-qt
+Version: 3.14-1
+Architecture: all
+Section: utils
+Priority: optional
+Depends: python3 (>= 3.8), python3-pyqt5
+Recommends: udev
+Maintainer: Odin3 Qt Packagers <odin3-qt@localhost>
+Description: Interface Qt no estilo do Odin3 v3.14 para gravar firmware Samsung
+ Reprodução fiel do layout do Odin3 (banner, slots ID:COM, abas Log/Options/Pit,
+ campos BL/AP/CP/CSC/USERDATA, Start/Reset/Exit) em PyQt5. Detecta aparelhos
+ Samsung em Download Mode, verifica o MD5 dos arquivos .tar.md5 e grava
+ usando o binário odin4, que deve ser instalado separadamente.
+ .
+ Projeto independente, sem vínculo com a Samsung.

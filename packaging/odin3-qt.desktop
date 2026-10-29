@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Odin3
+GenericName=Samsung Firmware Flasher
+Comment=Interface Qt não-oficial no estilo do Odin3 para gravar firmware Samsung (odin4)
+Exec=odin3-qt
+Icon=odin3-qt
+Terminal=false
+Categories=Utility;System;
+Keywords=samsung;odin;flash;firmware;android;
+StartupWMClass=odin3-qt

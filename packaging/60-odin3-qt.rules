@@ -1,0 +1,4 @@
+# Samsung em Download Mode: permite acesso USB sem root para o usuário logado
+# e impede que o ModemManager tente usar o aparelho.
+SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="685d", TAG+="uaccess", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1"
+SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", ATTR{idProduct}=="6601", TAG+="uaccess", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1"

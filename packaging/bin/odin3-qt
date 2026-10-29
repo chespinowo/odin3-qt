@@ -1,0 +1,5 @@
+#!/bin/sh
+# Launcher do Odin3 Qt
+PYTHONPATH=/usr/lib/odin3-qt${PYTHONPATH:+:$PYTHONPATH}
+export PYTHONPATH
+exec python3 -m odin3_qt "$@"

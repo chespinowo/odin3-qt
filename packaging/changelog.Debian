@@ -1,0 +1,5 @@
+odin3-qt (3.14-1) unstable; urgency=low
+
+  * Versão inicial: interface Qt inspirada no Odin3 v3.14 com backend odin4.
+
+ -- Odin3 Qt Packagers <odin3-qt@localhost>  Thu, 29 Oct 2026 08:10:00 -0300

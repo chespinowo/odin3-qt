@@ -1,0 +1,21 @@
+odin3-qt para Debian
+====================
+
+Interface Qt (PyQt5) fiel ao layout do Odin3 v3.14. Ela é apenas a interface:
+a gravação é feita pelo binário "odin4" (Samsung, para Linux), que NÃO vem
+neste pacote.
+
+1. Instale o odin4 em /usr/local/bin/odin4 (chmod +x), ou exporte
+   ODIN4=/caminho/para/odin4 antes de abrir o programa.
+2. Coloque o aparelho em Download Mode e conecte o cabo USB. O slot ID:COM
+   fica azul quando ele é detectado (Samsung, 04e8:685d / 04e8:6601).
+3. Marque/escolha BL, AP, CP, CSC e/ou USERDATA e clique em Start.
+
+Notas
+-----
+* Arquivos .tar.md5 têm o hash verificado antes da gravação.
+* Opções suportadas: Auto Reboot (--reboot) e Nand Erase All (-e).
+  Re-Partition/PIT não é suportado pelo odin4 e bloqueia o Start.
+* As regras udev (60-odin3-qt.rules) liberam o acesso USB ao usuário logado.
+  Se o aparelho não for detectado, reconecte o cabo.
+* Gravar firmware errado pode inutilizar o aparelho. Use por sua conta e risco.
