@@ -314,6 +314,15 @@ sudo apt install python3-pyqt5 dpkg-dev
 # resultado: build/odin3-qt_3.14-1_all.deb
 ```
 
+Para gerar um AppImage x86_64, instale `python3-pyqt5`, `python3-venv`, `curl` e `squashfs-tools` e rode:
+
+```bash
+./build-appimage.sh
+# resultado: build/odin3-qt_3.14-1_x86_64.AppImage
+```
+
+O script prepara o PyInstaller e baixa o `appimagetool` oficial quando necessário. O AppImage inclui a interface e o PyQt5; o `odin4` e o `adb` continuam sendo ferramentas externas e devem estar instalados no sistema.
+
 Renderizar a interface para um PNG (útil para comparar com a referência, sem abrir janela):
 
 ```bash

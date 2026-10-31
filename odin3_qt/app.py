@@ -29,8 +29,9 @@ ROWS = [("BL", 321), ("AP", 356), ("CP", 392), ("CSC", 428), ("USERDATA", 465)]
 APP_LANG = "pt"
 TRANSLATIONS = {
     "pt": {
-        "No device connected": "Nenhum dispositivo conectado", "Choose device image": "Escolha a foto do dispositivo",
-        "Fetch device info": "Buscar dados do dispositivo", "Choose image…": "Escolher imagem…",
+        "No device connected": "Nenhum dispositivo conectado", "Device photo": "Foto do aparelho",
+        "Choose device image": "Escolher imagem do dispositivo", "Fetch device info": "Buscar info",
+        "Choose image…": "Escolher imagem…",
         "Waiting for device": "Aguardando dispositivo", "Connected device": "Dispositivo conectado",
         "Auto Reboot": "Reinício automático", "Re-Partition": "Reparticionar",
         "F. Reset Time": "Redefinir tempo F.", "Nand Erase All": "Apagar NAND",
@@ -40,9 +41,9 @@ TRANSLATIONS = {
         "ADB / RECOVERY ACTIONS": "AÇÕES ADB / RECOVERY",
         "Requires an authorized Android or recovery session.": "Requer uma sessão Android ou recovery autorizada.",
         "List devices": "Listar dispositivos", "Reboot recovery": "Reiniciar em recovery",
-        "Reboot download": "Reiniciar em download", "ADB sideload…": "ADB sideload…",
-        "Push ROM / ZIP…": "Enviar ROM / ZIP…", "Reboot system": "Reiniciar sistema",
-        "Mass D/L ?": "Download em massa?", "Start": "Iniciar", "Reset": "Redefinir", "Exit": "Sair",
+        "Reboot download": "Download mode", "ADB sideload…": "Sideload ZIP…",
+        "Push ROM / ZIP…": "Enviar ZIP…", "Reboot system": "Reiniciar sistema",
+        "Mass D/L ?": "Mass D/L ?", "Start": "Iniciar", "Reset": "Redefinir", "Exit": "Sair",
         "Language": "Idioma", "English": "Inglês", "Português": "Português", "Español": "Espanhol",
         "No device": "Nenhum dispositivo", "Connected": "Conectado",
         "No device connected": "Nenhum dispositivo conectado",
@@ -66,8 +67,9 @@ TRANSLATIONS = {
         "The Start button flashes all detected devices in parallel (up to 8 slots).\nConnect devices in Download Mode and press Start.": "O botão Iniciar grava em paralelo todos os dispositivos detectados (até 8 slots).\nConecte os dispositivos em Download Mode e pressione Iniciar.",
     },
     "es": {
-        "No device connected": "Ningún dispositivo conectado", "Choose device image": "Elige la foto del dispositivo",
-        "Fetch device info": "Obtener datos del dispositivo", "Choose image…": "Elegir imagen…",
+        "No device connected": "Ningún dispositivo conectado", "Device photo": "Foto del dispositivo",
+        "Choose device image": "Elegir imagen del dispositivo", "Fetch device info": "Obtener info",
+        "Choose image…": "Elegir imagen…",
         "Waiting for device": "Esperando dispositivo", "Connected device": "Dispositivo conectado",
         "Auto Reboot": "Reinicio automático", "Re-Partition": "Reparticionar",
         "F. Reset Time": "Restablecer tiempo F.", "Nand Erase All": "Borrar NAND",
@@ -77,9 +79,9 @@ TRANSLATIONS = {
         "ADB / RECOVERY ACTIONS": "ACCIONES ADB / RECOVERY",
         "Requires an authorized Android or recovery session.": "Requiere una sesión Android o recovery autorizada.",
         "List devices": "Listar dispositivos", "Reboot recovery": "Reiniciar en recovery",
-        "Reboot download": "Reiniciar en download", "ADB sideload…": "ADB sideload…",
-        "Push ROM / ZIP…": "Enviar ROM / ZIP…", "Reboot system": "Reiniciar sistema",
-        "Mass D/L ?": "Descarga masiva?", "Start": "Iniciar", "Reset": "Restablecer", "Exit": "Salir",
+        "Reboot download": "Download mode", "ADB sideload…": "Sideload ZIP…",
+        "Push ROM / ZIP…": "Enviar ZIP…", "Reboot system": "Reiniciar sistema",
+        "Mass D/L ?": "Mass D/L ?", "Start": "Iniciar", "Reset": "Restablecer", "Exit": "Salir",
         "Language": "Idioma", "English": "Inglés", "Português": "Portugués", "Español": "Español",
         "No device": "Sin dispositivo", "Connected": "Conectado",
         "No device connected": "Ningún dispositivo conectado",
@@ -219,7 +221,7 @@ class MainWindow(QWidget):
         self.device_art = QLabel(self.device_card)
         self.device_art.setAlignment(Qt.AlignCenter)
         self.device_art.setStyleSheet("background:#f7f7f7;border:1px solid #c3c3c3;color:#666")
-        self.device_art.setText("Choose device image")
+        self.device_art.setText("Device photo")
         place(self.device_art, 12, 24, 126, 132)
         self.btn_fetch = QPushButton("Fetch device info", self.device_card)
         place(self.btn_fetch, 148, 37, 147, 30)
@@ -296,8 +298,10 @@ class MainWindow(QWidget):
         for widget in self.findChildren(QWidget):
             source = widget.property("_i18n_source")
             if source is not None:
-                if widget is self.device_art and not widget.pixmap().isNull():
-                    continue
+                if widget is self.device_art:
+                    pixmap = widget.pixmap()
+                    if pixmap is not None and not pixmap.isNull():
+                        continue
                 suffix = widget.property("_i18n_suffix") or ""
                 rendered = tr(source)
                 rendered = rendered % suffix if "%s" in rendered else rendered + suffix

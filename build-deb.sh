@@ -7,7 +7,8 @@ cd "$(dirname "$0")"
 VERSION=$(sed -n 's/^Version: //p' packaging/DEBIAN/control)
 ROOT=build/pkg
 
-rm -rf build
+mkdir -p build
+rm -rf "$ROOT"
 mkdir -p "$ROOT/DEBIAN" "$ROOT/usr/bin" "$ROOT/usr/lib/odin3-qt" \
          "$ROOT/usr/lib/udev/rules.d" "$ROOT/usr/share/applications" \
          "$ROOT/usr/share/doc/odin3-qt"
