@@ -3,7 +3,7 @@
 from PyQt5.QtCore import QPointF, QRectF, Qt
 from PyQt5.QtGui import (QBrush, QColor, QFont, QLinearGradient, QPainter,
                          QPainterPath, QPen, QPolygonF)
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QSizePolicy
 
 CONTINENTS = [
     # Américas
@@ -25,7 +25,8 @@ def _poly(points):
 class Banner(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setFixedSize(856, 71)
+        self.setMinimumHeight(71)
+        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
 
     def _icon(self, p, x, y, w, h, c1, c2):
         g = QLinearGradient(x, y, x, y + h)
@@ -50,7 +51,8 @@ class Banner(QWidget):
     def paintEvent(self, _):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
-        w, h = self.width(), self.height()
+        p.scale(self.width() / 856.0, self.height() / 71.0)
+        w, h = 856, 71
 
         bg = QLinearGradient(0, 0, w, 0)
         bg.setColorAt(0.0, QColor("#3c86b8"))

@@ -5,8 +5,8 @@ from PyQt5.QtGui import QColor, QFont, QPainter, QPen
 from PyQt5.QtWidgets import QWidget
 
 STATES = {
-    "idle": ("#e1e1e1", "#000000"),
-    "connected": ("#e1e1e1", "#000000"),
+    "idle": ("#e1e1e1", "#555555"),
+    "connected": ("#bfe7fb", "#145b86"),
     "flashing": ("#2f8fdc", "#ffffff"),
     "pass": ("#2fa84f", "#ffffff"),
     "fail": ("#d9322b", "#ffffff"),
@@ -29,7 +29,7 @@ class SlotBox(QWidget):
         bg, fg = STATES[self.state]
         p = QPainter(self)
         p.fillRect(self.rect(), QColor(bg))
-        p.setPen(QPen(QColor("#d0d0d0")))
+        p.setPen(QPen(QColor("#c4c4c4")))
         p.drawRect(0, 0, self.width() - 1, self.height() - 1)
         if self.text:
             f = QFont(self.font())
@@ -58,8 +58,8 @@ class SlotBar(QWidget):
         if self.value:
             p.fillRect(1, 1, int((self.width() - 2) * self.value / 100), self.height() - 2,
                        QColor("#3b9be0"))
-        p.setPen(QPen(QColor("#d0d0d0")))
+        p.setPen(QPen(QColor("#c4c4c4")))
         p.drawRect(0, 0, self.width() - 1, self.height() - 1)
         if self.text:
-            p.setPen(QColor("#000000"))
+            p.setPen(QColor("#111111"))
             p.drawText(self.rect(), Qt.AlignCenter, self.text)
